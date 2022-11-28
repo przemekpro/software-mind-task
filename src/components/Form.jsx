@@ -2,12 +2,29 @@ import { useState } from "react"
 
 export default function Form() {
 
-const [isChecked, setIsChecked] = useState(false)
+    const [user, setUser] = useState()
+    const [isChecked, setIsChecked] = useState(false)
+
+    function handleChange(e) {
+        const {name, value} = e.target
+        setUser(prevValue => ({
+                ...prevValue,
+                [name]: value
+            })
+        )
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        console.log(user)
+    }
 
     return(
         <div className="form__wrapper">
-            <h1>Form</h1>
-            <form>
+
+            <h2>Form</h2>
+            
+            <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">
                     First name:
                     <input 
@@ -16,6 +33,7 @@ const [isChecked, setIsChecked] = useState(false)
                         id="firstName"
                         type="text"
                         placeholder="e.g. John"
+                        onChange={handleChange}
                     />
                 </label>
 
@@ -28,6 +46,7 @@ const [isChecked, setIsChecked] = useState(false)
                         id="password"
                         type="password"
                         placeholder="*****"
+                        onChange={handleChange}
                     />
                 </label>
 
@@ -51,6 +70,7 @@ const [isChecked, setIsChecked] = useState(false)
                         id="email"
                         type="email"
                         placeholder="e.g. john@doe.com"
+                        onChange={handleChange}
                     />
                 </label>}
 
