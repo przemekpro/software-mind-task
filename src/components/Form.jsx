@@ -43,6 +43,7 @@ export default function Form() {
                         required
                         name="firstName"
                         id="firstName"
+                        data-testid="firstName"
                         type="text"
                         placeholder="e.g. John"
                         onChange={handleChange}
@@ -59,6 +60,7 @@ export default function Form() {
                         required
                         name="password"
                         id="password"
+                        data-testid="password"
                         type="password"
                         placeholder="*****"
                         onChange={handleChange}
@@ -74,9 +76,10 @@ export default function Form() {
                     <input 
                         name="newsletter"
                         id="newsletter"
+                        data-testid="checkbox"
                         type="checkbox"
                         placeholder="e.g. John"
-                        checked={isChecked}
+                        aria-checked={isChecked}
                         onChange={() => setIsChecked(prevVal => !prevVal)}
                     />
                 </label>
@@ -89,6 +92,7 @@ export default function Form() {
                         required
                         name="email"
                         id="email"
+                        data-testid="email"
                         type="email"
                         placeholder="e.g. john@doe.com"
                         onChange={handleChange}
