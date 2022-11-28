@@ -46,6 +46,7 @@ export default function Form() {
                         placeholder="e.g. John"
                         onChange={handleChange}
                         onInvalid={handleInvalid}
+                        pattern="^[a-zA-Z]{2,}$"
                     />
                 </label>
 
@@ -60,6 +61,7 @@ export default function Form() {
                         placeholder="*****"
                         onChange={handleChange}
                         onInvalid={handleInvalid}
+                        minLength={5}
                     />
                 </label>
 
@@ -83,6 +85,7 @@ export default function Form() {
                         id="email"
                         type="email"
                         placeholder="e.g. john@doe.com"
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                         onChange={handleChange}
                         onInvalid={handleInvalid}
                     />
