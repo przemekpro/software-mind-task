@@ -79,7 +79,7 @@ export default function Form() {
                         data-testid="checkbox"
                         type="checkbox"
                         placeholder="e.g. John"
-                        aria-checked={isChecked}
+                        checked={isChecked}
                         onChange={() => setIsChecked(prevVal => !prevVal)}
                     />
                 </label>
