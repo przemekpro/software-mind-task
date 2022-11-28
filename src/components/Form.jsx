@@ -1,5 +1,9 @@
+import { useState } from "react"
 
 export default function Form() {
+
+const [isChecked, setIsChecked] = useState(false)
+
     return(
         <div className="form__wrapper">
             <h1>Form</h1>
@@ -34,10 +38,12 @@ export default function Form() {
                         id="newsletter"
                         type="checkbox"
                         placeholder="e.g. John"
+                        checked={isChecked}
+                        onChange={() => setIsChecked(prevVal => !prevVal)}
                     />
                 </label>
 
-                <label htmlFor="email">
+                {isChecked && <label htmlFor="email">
                     E-mail:
                     <input 
                         required
@@ -46,7 +52,7 @@ export default function Form() {
                         type="email"
                         placeholder="e.g. john@doe.com"
                     />
-                </label>
+                </label>}
 
                 <button>Submit</button>
             </form>
