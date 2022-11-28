@@ -1,10 +1,15 @@
 import { useState } from "react"
 
+
 export default function Form() {
 
     const [user, setUser] = useState()
     const [isChecked, setIsChecked] = useState(false)
     const [submitMsg, setSubmitMsg] = useState('')
+
+    const successMsg = 'Pomyślna rejestracja'
+    const errorMsg = 'Błąd walidacji'
+
 
     function handleChange(e) {
         const {name, value} = e.target
@@ -17,18 +22,14 @@ export default function Form() {
 
     function handleSubmit(e) {
         e.preventDefault()
-        console.log(user)
-        setSubmitMsg('Pomyślna rejestracja')
+        console.log('New user', user)
+        setSubmitMsg(successMsg)
         setIsChecked(false)
         setUser()
         e.target.reset()
     }
 
-    function handleInvalid() {
-        setSubmitMsg('Błąd walidacji')
-    }
-
-    console.log(user)
+    function handleInvalid() {setSubmitMsg(errorMsg)}
 
     return(
         <div className="form__wrapper">
@@ -37,7 +38,7 @@ export default function Form() {
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="firstName">
-                    First name:
+                    First name*
                     <input 
                         required
                         name="firstName"
@@ -49,10 +50,11 @@ export default function Form() {
                         pattern="^[a-zA-Z]{2,}$"
                     />
                 </label>
+                <br />
 
                 
                 <label htmlFor="password">
-                    Password:
+                    Password*
                     <input 
                         required
                         name="password"
@@ -64,9 +66,11 @@ export default function Form() {
                         minLength={5}
                     />
                 </label>
+                <br />
+
 
                 <label htmlFor="newsletter">
-                    Newsletter
+                    Do you want to receive our newsletter?
                     <input 
                         name="newsletter"
                         id="newsletter"
@@ -76,22 +80,27 @@ export default function Form() {
                         onChange={() => setIsChecked(prevVal => !prevVal)}
                     />
                 </label>
+                <br />
+
 
                 {isChecked && <label htmlFor="email">
-                    E-mail:
+                    E-mail*
                     <input 
                         required
                         name="email"
                         id="email"
                         type="email"
                         placeholder="e.g. john@doe.com"
-                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                         onChange={handleChange}
                         onInvalid={handleInvalid}
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                     />
                 </label>}
+                <br />
+
 
                 <button>Submit</button>
+                <p>* – required field</p>
                 {submitMsg && <p>{submitMsg}</p>}
             </form>
         </div>
